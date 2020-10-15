@@ -3,17 +3,31 @@
     <lbd-vertical-swiper
       ref="swiper"
       audio="http://www.yinpin.com/upload/jiansheshengtaiyiju1009020.mp3"
-      audio-image="http://as.eqh5.com/h5_view_2/images/bgmBtn-fbd2dc.svg"
+      :audio-image="require('./audio.svg')"
     >
-      <lbd-vertical-swiper-slide background-color="red">
-        <div class="page-1 animate__animated animate__slideInLeft">page1</div>
+      <lbd-vertical-swiper-slide
+        background-color="red"
+        :index="0"
+      >
+        <div class="page-1 animate__animated animate__slideInLeft">
+          <div>page1</div>
+          <div @click="isShowPage = !isShowPage">toggle page2</div>
+        </div>
+      </lbd-vertical-swiper-slide>
+      <lbd-vertical-swiper-slide
+        background-color="yellow"
+        v-if="isShowPage"
+        :index="1"
+      >
+        <div class="page-1 animate__animated animate__slideInLeft">page2</div>
       </lbd-vertical-swiper-slide>
       <lbd-vertical-swiper-slide
         :background-image="require('./bg.jpg')"
         :no-swipe="noSwipe"
+        :index="2"
       >
         <div class="page-2 animate__animated animate__slideInRight">
-          <div>page2</div>
+          <div>page3</div>
           <div @click="noSwipe = !noSwipe">no swipe {{ noSwipe }}</div>
         </div>
       </lbd-vertical-swiper-slide>
@@ -32,7 +46,8 @@ export default {
     [VerticalSwiperSlide.name]: VerticalSwiperSlide
   },
   data: () => ({
-    noSwipe: false
+    noSwipe: false,
+    isShowPage: true
   })
 }
 </script>

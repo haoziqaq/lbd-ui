@@ -60,6 +60,11 @@ export default {
         this.$refs['audio'].pause()
         this.audioState = 'paused'
       }
+    },
+    resetSlideIndex() {
+      this.verticalSwiperSlideInstances.forEach((verticalSwiperSlideInstance, index) => {
+        verticalSwiperSlideInstance.slideIndex = index
+      })
     }
   },
   mounted() {

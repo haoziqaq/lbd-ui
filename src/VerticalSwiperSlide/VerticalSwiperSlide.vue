@@ -29,7 +29,7 @@
 
 <script>
 import { SwiperSlide } from 'vue-awesome-swiper'
-import { findComponentUpward } from '../../utils/componentHelper'
+import { findBrothersComponents, findComponentUpward } from '../../utils/componentHelper'
 export default {
   name: 'LbdVerticalSwiperSlide',
   components: {
@@ -55,6 +55,10 @@ export default {
     backgroundSize: {
       type: String,
       default: '100% 100%'
+    },
+    index: {
+      type: Number,
+      required: true
     }
   },
   data: () => ({
@@ -68,8 +72,17 @@ export default {
   },
   mounted() {
     this.verticalSwiperInstance = findComponentUpward(this, 'LbdVerticalSwiper')
-    this.verticalSwiperInstance.verticalSwiperSlideInstances.push(this)
-    this.slideIndex = this.verticalSwiperInstance.verticalSwiperSlideInstances.length - 1
+    this.verticalSwiperInstance.verticalSwiperSlideInstances =
+      findBrothersComponents(this, 'LbdVerticalSwiperSlide', false)
+        .sort((a, b) => a.index - b.index)
+    this.verticalSwiperInstance.resetSlideIndex()
+  },
+  destroyed() {
+    this.verticalSwiperInstance.verticalSwiperSlideInstances.splice(
+      this.verticalSwiperInstance.verticalSwiperSlideInstances.indexOf(this),
+      1
+    )
+    this.verticalSwiperInstance.resetSlideIndex()
   }
 }
 </script>
