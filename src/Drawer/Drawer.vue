@@ -8,12 +8,11 @@
   <div
     class="lbd-drawer"
     v-if="isShowModal"
-    :style="{'background-color': modalColor}"
+    :style="{'background-color': modalColor, 'z-index': zIndex}"
     :class="[modalFade]"
     @click="closeDrawer"
     @animationend="handleAnimationend"
-    :catchtouchmove="!canScroll"
-    @touchmove="handleModalTouchmove"
+    catchtouchmove
   >
     <div
       class="main"
@@ -27,6 +26,7 @@
 </template>
 
 <script>
+import context from '../../utils/context'
 const slideAnimations = {
   bottom(open) {
     return open ? 'lbd-bottom-slide-up' : 'lbd-bottom-slide-down'
@@ -60,10 +60,6 @@ export default {
       type: String,
       default: '#fff'
     },
-    canScroll: {
-      type: Boolean,
-      default: false
-    },
     // top right bottom left
     position: {
       type: String,
@@ -73,19 +69,28 @@ export default {
   watch: {
     value: {
       immediate: true,
-      handler() {
+      handler(newValue, oldValue) {
         if (this.value) {
           this.drawerSlide = this.createSlideAnimate(true)
           this.modalFade = 'lbd-fade-in'
           this.isShowModal = true
+          context.zIndex++
+          context.lockCount++
+          this.zIndex = context.zIndex
+          document && document.body.classList.add('lbd-overflow-hidden')
         } else {
           this.drawerSlide = this.createSlideAnimate(false)
           this.modalFade = 'lbd-fade-out'
+          if (oldValue !== undefined) {
+            context.lockCount--
+            context.lockCount === 0 && document && document.body.classList.remove('lbd-overflow-hidden')
+          }
         }
       }
     }
   },
   data: () => ({
+    zIndex: context.zIndex,
     isShowModal: false,
     drawerSlide: 'lbd-slide-up',
     modalFade: 'lbd-fade-in',
@@ -103,15 +108,13 @@ export default {
     },
     createSlideAnimate(open) {
       return slideAnimations[this.position](open)
-    },
-    handleModalTouchmove(event) {
-      !this.canScroll && event.preventDefault()
     }
-  },
+  }
 }
 </script>
 
 <style lang="scss">
+@import "../../styles/common";
 @import "../../styles/animation";
 .lbd-drawer {
   position: fixed;

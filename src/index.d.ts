@@ -1,7 +1,9 @@
 export declare const Drawer: any
 export declare const LuckyDraw: any
 export declare const Modal: any
+export declare const ScratchCard: any
 export declare const Shake: any
+export declare const Tabs: any
 export declare const VerticalSwiper: any
 export declare const VerticalSwiperSlide: any  
 

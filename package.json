@@ -1,13 +1,13 @@
 {
   "name": "lbd-ui",
-  "version": "1.0.1",
+  "version": "1.1.2",
   "main": "lib/lbd-ui.common.js",
   "style": "lib/lbd-ui.css",
   "author": "齐皓<357229046@qq.com>",
   "keywords": ["Vue", "UI", "Component", "Library", "Custom"],
   "description": "Enterprise business component library",
   "scripts": {
-    "serve": "vue-cli-service serve --componentName=VerticalSwiper",
+    "serve": "vue-cli-service serve --componentName=Modal",
     "build": "cnpm run compileSRC && vue-cli-service build --target lib --name lbd-ui src/index.js",
     "compileSRC": "node scripts/compileSRC.js"
   },

@@ -8,12 +8,11 @@
   <div
     class="lbd-modal"
     v-if="isShowModal"
-    :style="{'background-color': modalColor}"
+    :style="{'background-color': modalColor, 'z-index': zIndex}"
     :class="[modalFade]"
     @click="closeModal"
     @animationend="handleAnimationend"
-    :catchtouchmove="!canScroll"
-    @touchmove="handleModalTouchmove"
+    catchtouchmove
   >
     <div class="main" @click.stop>
       <slot/>
@@ -25,6 +24,7 @@
 </template>
 
 <script>
+import context from '../../utils/context'
 export default {
   name: 'LbdModal',
   props: {
@@ -39,26 +39,31 @@ export default {
     modalColor: {
       type: String,
       default: 'rgba(0, 0, 0, .8)'
-    },
-    canScroll: {
-      type: Boolean,
-      default: false
     }
   },
   watch: {
     value: {
       immediate: true,
-      handler() {
+      handler(newValue, oldValue) {
         if (this.value) {
           this.modalFade = 'lbd-fade-in'
           this.isShowModal = true
+          context.zIndex++
+          context.lockCount++
+          this.zIndex = context.zIndex
+          document && document.body.classList.add('lbd-overflow-hidden')
         } else {
           this.modalFade = 'lbd-fade-out'
+          if (oldValue !== undefined) {
+            context.lockCount--
+            context.lockCount === 0 && document && document.body.classList.remove('lbd-overflow-hidden')
+          }
         }
       }
     }
   },
   data: () => ({
+    zIndex: context.zIndex,
     isShowModal: false,
     modalFade: 'lbd-fade-in'
   }),
@@ -72,15 +77,13 @@ export default {
       if (!this.value) {
         this.isShowModal = false
       }
-    },
-    handleModalTouchmove(event) {
-      !this.canScroll && event.preventDefault()
     }
-  },
+  }
 }
 </script>
 
 <style lang="scss">
+@import "../../styles/common";
 @import "../../styles/animation";
 .lbd-modal {
   display: flex;
@@ -92,7 +95,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 9999;
 
   .close {
     margin-top: 2vh;

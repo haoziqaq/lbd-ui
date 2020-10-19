@@ -20,7 +20,8 @@ export default {
     [Modal.name]: Modal
   },
   data: () => ({
-    isShowModal: false
+    isShowModal: true,
+    isShowModal2: true
   })
 }
 </script>
