@@ -109,6 +109,12 @@ export default {
     createSlideAnimate(open) {
       return slideAnimations[this.position](open)
     }
+  },
+  destroyed() {
+    if (this.value) {
+      context.lockCount--
+      context.lockCount === 0 && document && document.body.classList.remove('lbd-overflow-hidden')
+    }
   }
 }
 </script>

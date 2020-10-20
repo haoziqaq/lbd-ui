@@ -100,6 +100,38 @@
   }
 }
 
+@keyframes lbd-pop-in {
+  0% {
+    opacity: .7;
+    transform: scale(.7);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes lbd-pop-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: .7;
+    transform: scale(.7);
+  }
+}
+
+.lbd-pop-in {
+  animation: lbd-pop-in .3s forwards;
+}
+
+.lbd-pop-out {
+  animation: lbd-pop-out .3s forwards;
+}
+
 .lbd-fade-in {
   animation: lbd-fade-in .3s forwards;
 }

@@ -1,13 +1,13 @@
 {
   "name": "lbd-ui",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "main": "lib/lbd-ui.common.js",
   "style": "lib/lbd-ui.css",
   "author": "齐皓<357229046@qq.com>",
   "keywords": ["Vue", "UI", "Component", "Library", "Custom"],
   "description": "Enterprise business component library",
   "scripts": {
-    "serve": "vue-cli-service serve --componentName=Modal",
+    "serve": "vue-cli-service serve --componentName=Dialog",
     "build": "cnpm run compileSRC && vue-cli-service build --target lib --name lbd-ui src/index.js",
     "compileSRC": "node scripts/compileSRC.js"
   },

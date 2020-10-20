@@ -78,6 +78,12 @@ export default {
         this.isShowModal = false
       }
     }
+  },
+  destroyed() {
+    if (this.value) {
+      context.lockCount--
+      context.lockCount === 0 && document && document.body.classList.remove('lbd-overflow-hidden')
+    }
   }
 }
 </script>

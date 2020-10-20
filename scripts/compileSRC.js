@@ -6,6 +6,14 @@
 const fs = require('fs-extra')
 const path = require('path')
 
+function createAPI(componentName) {
+  if (componentName === 'Dialog') {
+    return '{ alert: (options: any) => Promise<any>, confirm: (options: any) => Promise<any> }'
+  } else {
+    return 'any'
+  }
+}
+
 const compile = async () => {
   const indexPath = path.resolve(__dirname, '../src/index.js')
   const indexTSPath = path.resolve(__dirname, '../src/index.d.ts')
@@ -26,7 +34,7 @@ ${srcDir.map(componentName => `    Vue.component(${componentName}.name, ${compon
 }
 `
   const dTemplate = `\
-${srcDir.map(componentName => `export declare const ${componentName}: any`).join('\r\n')}  
+${srcDir.map(componentName => `export declare const ${componentName}: ${createAPI(componentName)}`).join('\r\n')}  
 
 declare const LbdUI: { install: (Vue: any) => void }
 export default LbdUI

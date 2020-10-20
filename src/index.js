@@ -1,3 +1,4 @@
+import Dialog from './Dialog'
 import Drawer from './Drawer'
 import LuckyDraw from './LuckyDraw'
 import Modal from './Modal'
@@ -8,6 +9,7 @@ import VerticalSwiper from './VerticalSwiper'
 import VerticalSwiperSlide from './VerticalSwiperSlide'
 
 export {
+  Dialog,
   Drawer,
   LuckyDraw,
   Modal,
@@ -20,6 +22,7 @@ export {
 
 export default {
   install(Vue) {
+    Vue.component(Dialog.name, Dialog)
     Vue.component(Drawer.name, Drawer)
     Vue.component(LuckyDraw.name, LuckyDraw)
     Vue.component(Modal.name, Modal)
