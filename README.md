@@ -18,6 +18,9 @@ npm run build
 - VerticalSwiper/VerticalSwiperSlide 支持web
 - Tab 选项卡组件 支持小程序
 - ScratchCard 刮刮卡组件 支持web
-- Dialog 提示框 支持小程序和web
+- Dialog 提示框组件 支持小程序和web
+- ClockIn 微信打卡组件 支持web
 
 ## 待开发的组件
+- Avatar 头像组件 支持小程序和web
+- Question 答题组件 支持小程序和web

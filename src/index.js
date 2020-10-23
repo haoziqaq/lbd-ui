@@ -1,3 +1,4 @@
+import ClockIn from './ClockIn'
 import Dialog from './Dialog'
 import Drawer from './Drawer'
 import LuckyDraw from './LuckyDraw'
@@ -9,6 +10,7 @@ import VerticalSwiper from './VerticalSwiper'
 import VerticalSwiperSlide from './VerticalSwiperSlide'
 
 export {
+  ClockIn,
   Dialog,
   Drawer,
   LuckyDraw,
@@ -22,6 +24,7 @@ export {
 
 export default {
   install(Vue) {
+    Vue.component(ClockIn.name, ClockIn)
     Vue.component(Dialog.name, Dialog)
     Vue.component(Drawer.name, Drawer)
     Vue.component(LuckyDraw.name, LuckyDraw)
