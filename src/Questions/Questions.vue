@@ -255,7 +255,7 @@ export default {
         this.selectedAnswers[this.currentQuestion[this.questionPrimaryKey]]
       )
       this.tipText = isTrueAnswer ? this.successText : this.errorText
-      this.trueOrder = '正确答案是:,' + this.currentQuestion[this.trueAnswersKey]
+      this.trueOrder = '正确答案是:' + this.currentQuestion[this.trueAnswersKey]
         .map(
           answerId => this.currentQuestion[this.answersKey]
           .find(answer => answerId === answer[this.answerPrimaryKey])[this.answerOrderKey]
