@@ -1,6 +1,6 @@
 {
   "name": "lbd-ui",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "main": "lib/lbd-ui.common.js",
   "style": "lib/lbd-ui.css",
   "author": "齐皓<357229046@qq.com>",
@@ -13,7 +13,7 @@
   ],
   "description": "Enterprise business component library",
   "scripts": {
-    "serve": "vue-cli-service serve --componentName=ClockIn",
+    "serve": "vue-cli-service serve --componentName=Questions",
     "build": "cnpm run compileSRC && vue-cli-service build --target lib --name lbd-ui src/index.js",
     "compileSRC": "node scripts/compileSRC.js"
   },

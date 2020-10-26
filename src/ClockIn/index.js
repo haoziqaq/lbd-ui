@@ -4,4 +4,4 @@ ClockIn.install = function(Vue) {
   Vue.component(ClockIn.name, ClockIn)
 }
 
-export default Dialog
+export default ClockIn

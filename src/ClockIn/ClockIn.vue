@@ -6,7 +6,7 @@
 */
 <template>
   <div class="lbd-clock-in" @click="clockIn">
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -36,27 +36,29 @@ export default {
     }
   },
   methods: {
-    async clockIn() {
-      try {
-        this.$emit('start')
-        const [inside, distance] = await this.checkPosition(this.targetLocation, this.distance)
-        this.$emit('end', inside, distance)
-      } catch (e) {
-        this.$emit('error', e)
-      }
+    clockIn() {
+      this.$emit('start')
+      this.checkPosition(this.targetLocation, this.distance)
+        .then(([inside, distance]) => {
+          this.$emit('end', inside, distance)
+        })
+        .catch(e => {
+          this.$emit('error', e)
+        })
     },
     checkPosition(position, distanceLimit) {
       return new Promise(resolve => {
         this.wx.getLocation({
           type: 'gcj02',
-          success: async (res) => {
+          success: (res) => {
             const { latitude, longitude } = res
-            const distanceResponse = await this.computeDistance(
+            this.computeDistance(
               `${ latitude },${ longitude }`, `${ position.latitude },${ position.longitude }`
-            )
-            const distance = distanceResponse?.result?.rows?.[0]?.elements?.[0]?.distance ?? Infinity
-            const inside = distance <= distanceLimit
-            inside ? resolve([true, distance]) : resolve([false, distance])
+            ).then(distanceResponse => {
+              const distance = distanceResponse.result.rows[0].elements.[0].distance || Infinity
+              const inside = distance <= distanceLimit
+              inside ? resolve([true, distance]) : resolve([false, distance])
+            })
           },
           fail: (error) => {
             reject(error)

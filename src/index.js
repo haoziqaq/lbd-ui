@@ -3,6 +3,7 @@ import Dialog from './Dialog'
 import Drawer from './Drawer'
 import LuckyDraw from './LuckyDraw'
 import Modal from './Modal'
+import Questions from './Questions'
 import ScratchCard from './ScratchCard'
 import Shake from './Shake'
 import Tabs from './Tabs'
@@ -15,6 +16,7 @@ export {
   Drawer,
   LuckyDraw,
   Modal,
+  Questions,
   ScratchCard,
   Shake,
   Tabs,
@@ -29,6 +31,7 @@ export default {
     Vue.component(Drawer.name, Drawer)
     Vue.component(LuckyDraw.name, LuckyDraw)
     Vue.component(Modal.name, Modal)
+    Vue.component(Questions.name, Questions)
     Vue.component(ScratchCard.name, ScratchCard)
     Vue.component(Shake.name, Shake)
     Vue.component(Tabs.name, Tabs)
