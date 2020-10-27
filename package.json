@@ -1,6 +1,6 @@
 {
   "name": "lbd-ui",
-  "version": "1.3.2",
+  "version": "1.3.4",
   "main": "lib/lbd-ui.common.js",
   "style": "lib/lbd-ui.css",
   "author": "齐皓<357229046@qq.com>",

@@ -55,7 +55,7 @@ export default {
             this.computeDistance(
               `${ latitude },${ longitude }`, `${ position.latitude },${ position.longitude }`
             ).then(distanceResponse => {
-              const distance = distanceResponse.result.rows[0].elements.[0].distance || Infinity
+              const distance = distanceResponse.result.rows[0].elements[0].distance || Infinity
               const inside = distance <= distanceLimit
               inside ? resolve([true, distance]) : resolve([false, distance])
             })
