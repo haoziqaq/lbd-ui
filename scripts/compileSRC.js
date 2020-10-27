@@ -8,7 +8,32 @@ const path = require('path')
 
 function createAPI(componentName) {
   if (componentName === 'Dialog') {
-    return '{ alert: (options: any) => Promise<any>, confirm: (options: any) => Promise<any> }'
+    return `{
+  alert: (options: {
+    value: boolean;
+    title: string;
+    width: string;
+    message: string;
+    messageAlign: string;
+    showCancelButton: boolean;
+    cancelButtonText: string;
+    cancelButtonColor: string;
+    confirmButtonText: string;
+    confirmButtonColor: string;
+  }) => Promise<any>,
+  confirm: (options: {
+    value: boolean;
+    title: string;
+    width: string;
+    message: string;
+    messageAlign: string;
+    showCancelButton: boolean;
+    cancelButtonText: string;
+    cancelButtonColor: string;
+    confirmButtonText: string;
+    confirmButtonColor: string;
+  }) => Promise<any> 
+}`
   } else {
     return 'any'
   }

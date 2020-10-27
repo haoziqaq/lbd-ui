@@ -27,7 +27,8 @@ export default {
       validator(targetLocation) {
         return targetLocation.hasOwnProperty('longitude') &&
           targetLocation.hasOwnProperty('latitude')
-      }
+      },
+      required: true
     },
     //单位m
     distance: {
@@ -55,10 +56,10 @@ export default {
             this.computeDistance(
               `${ latitude },${ longitude }`, `${ position.latitude },${ position.longitude }`
             ).then(distanceResponse => {
-              const distance = distanceResponse.result.rows[0].elements[0].distance || Infinity
+              const distance = distanceResponse.result.rows[0].elements[0].distance
               const inside = distance <= distanceLimit
               inside ? resolve([true, distance]) : resolve([false, distance])
-            })
+            }).catch(e => reject(e))
           },
           fail: (error) => {
             reject(error)
@@ -67,8 +68,12 @@ export default {
       })
     },
     jsonp(url) {
-      return new Promise((resolve) => {
-        window.jsonCallBack = result => resolve(result)
+      return new Promise((resolve, reject) => {
+        window.jsonCallBack = result => {
+          result.status === 0 && result.message === 'query ok'
+            ? resolve(result)
+            : reject(result)
+        }
         const jsonp = document.createElement('script')
         jsonp.type = 'text/javascript'
         jsonp.src = `${ url }&callback=jsonCallBack`
