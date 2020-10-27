@@ -1,5 +1,6 @@
 /**
 * @fileOverview Question
+* @platform WEB
 * @author 齐皓
 * @date 2020/10/26
 */

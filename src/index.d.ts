@@ -1,29 +1,27 @@
 export declare const ClockIn: any
 export declare const Dialog: {
   alert: (options: {
-    value: boolean;
-    title: string;
-    width: string;
     message: string;
-    messageAlign: string;
-    showCancelButton: boolean;
-    cancelButtonText: string;
-    cancelButtonColor: string;
-    confirmButtonText: string;
-    confirmButtonColor: string;
-  }) => Promise<any>,
+    title?: string;
+    width?: string;
+    messageAlign?: string;
+    showCancelButton?: boolean;
+    cancelButtonText?: string;
+    cancelButtonColor?: string;
+    confirmButtonText?: string;
+    confirmButtonColor?: string;
+  } | string) => Promise<any>,
   confirm: (options: {
-    value: boolean;
-    title: string;
-    width: string;
     message: string;
-    messageAlign: string;
-    showCancelButton: boolean;
-    cancelButtonText: string;
-    cancelButtonColor: string;
-    confirmButtonText: string;
-    confirmButtonColor: string;
-  }) => Promise<any> 
+    title?: string;
+    width?: string;
+    messageAlign?: string;
+    showCancelButton?: boolean;
+    cancelButtonText?: string;
+    cancelButtonColor?: string;
+    confirmButtonText?: string;
+    confirmButtonColor?: string;
+  } | string) => Promise<any> 
 }
 export declare const Drawer: any
 export declare const LuckyDraw: any

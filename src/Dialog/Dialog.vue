@@ -29,21 +29,21 @@
         {{ message }}
       </div>
       <div class="dialog-button-container">
-        <button
+        <div
           class="dialog-button dialog-cancel"
           :style="{'color': cancelButtonColor}"
           v-if="showCancelButton"
           @click="cancel"
         >
           {{ cancelButtonText }}
-        </button>
-        <button
+        </div>
+        <div
           class="dialog-button dialog-confirm"
           :style="{'color': confirmButtonColor}"
           @click="confirm"
         >
           {{ confirmButtonText }}
-        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -207,6 +207,8 @@ export default {
       
       .dialog-button {
         flex: 1;
+        line-height: 48px;
+        text-align: center;
         height: 48px;
         font-size: 16px;
         background: #fff;
