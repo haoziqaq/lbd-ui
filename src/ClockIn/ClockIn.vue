@@ -47,7 +47,7 @@ export default {
         })
     },
     checkPosition(position, distanceLimit) {
-      return new Promise(resolve => {
+      return new Promise((resolve, reject) => {
         this.wx.getLocation({
           type: 'gcj02',
           success: (res) => {
